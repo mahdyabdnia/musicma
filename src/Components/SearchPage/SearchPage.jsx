@@ -7,6 +7,7 @@ import sings from '../Consts/sings'
 import madahi from '../Consts/madah';
 import { MoreHoriz, Spa } from '@mui/icons-material';
 import ProcessBar from '../ProcessBar/ProcessBar';
+import MainBox from '../MainBox/MainBox';
 export default function SearchPage() {
   const {text}=useParams();
   const selectRef=useRef(null);
@@ -254,7 +255,7 @@ export default function SearchPage() {
          {uniqueSings.slice(start,end).map((item)=>{
           return(
             <>
-            <Box artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType} src={item.src}/>
+            <MainBox artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType} src={item.src}/>
             </>
           )
          })}

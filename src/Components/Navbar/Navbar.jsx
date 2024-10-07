@@ -85,8 +85,8 @@ export default function Navbar() {
         <img  src={`${process.env.PUBLIC_URL}/images/brand.png`}   alt="" className={classes.logo} onClick={()=>{navigate('/')}}/>
 
      <div className={classes.search_box}>
-            <input type="text" className={classes.search_input} ref={inputRef} value={value} onChange={handleInput} placeholder={placeholder} />
-          <span onClick={()=>{navigate(`/search/${value}`)}}>  <Search onClick={()=>{alert('hello')}}/></span>
+            <input type="text" className={classes.search_input} ref={inputRef} value={value} onChange={handleInput} placeholder={placeholder} onKeyPress={(e) => { if (e.key === 'Enter') navigate(`/search/${value}`); }} />
+          <span onClick={()=>{navigate(`/search/${value}`)}}  >  <Search onClick={()=>{alert('hello')}}/></span>
          
             
          </div >

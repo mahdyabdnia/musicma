@@ -6,6 +6,7 @@ import sings from '../Consts/sings';
 import madahi from '../Consts/madah';
 import { LeftArrow, RightArrow } from '../Icons/Icons';
 import ProcessBar from '../ProcessBar/ProcessBar';
+import MainBox from '../MainBox/MainBox';
 export default function Artist() { 
     const classes=useStyles();
     const {name}=useParams();
@@ -87,7 +88,7 @@ export default function Artist() {
         </div>
         {uniqueSings.slice(start,end).map((item,index)=>{
           return(
-            <Box artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType} src={item.src}/>
+            <MainBox artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType} src={item.src}/>
           )
         })}
     

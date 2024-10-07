@@ -23,7 +23,7 @@ export default function MainBox({artist,sing,type,singerType,src}) {
 
         <div className={classes.body}>
             <div className={classes.body_info_box}>
-                <h1 className={classes.info_header}>دانلود {type}{sing}</h1>  
+                <h1 className={classes.info_header}>دانلود {type} {sing} {artist}</h1>  
                 <h3>جدید‌ترین اثر </h3>
                 <h1 className={classes.info_header}> {singerType} عزیز {artist}     ...</h1>
             </div> 
