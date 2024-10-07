@@ -113,12 +113,7 @@ export default function Navbar() {
         
 
         </li>
-        <li className={classes.nav_list_item} ref={(el)=>(menuButton.current[2]=el)}> <span>     موسیقی رپ </span> 
-        <span><Down/></span>  <MenuBox /></li>
-        <li className={classes.nav_list_item} ref={(el)=>(menuButton.current[3]=el)}> <span>     موسیقی پاپ</span> 
-        <span><Down/></span>  <MenuBox  /></li>
-        <li className={classes.nav_list_item} ref={(el)=>(menuButton.current[4]=el)}> <span>     سایر سبک‌ها</span> 
-        <span><Down/></span>  <MenuBox/></li>
+       
       </ul>
      </div>
     

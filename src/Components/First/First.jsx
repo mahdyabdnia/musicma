@@ -17,6 +17,7 @@ export default function First() {
         .map(uniqueKey => {
             return newSing.find(item => `${item.artist}-${item.sing}` === uniqueKey);
         });
+        
 
   const showMenuRef = useRef(null)
   const optionRef=useRef([])

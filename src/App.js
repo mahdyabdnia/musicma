@@ -8,8 +8,11 @@ import withLoader from './Components/WithLoaders'
 import SearchPage from './Components/SearchPage/SearchPage'
 import Archive from './Components/Archive/Archive'
 
+ 
+
 import './index.css'
 import Sing from './Components/Sing/Sing'
+import ScrollToTop from './Scroll'
 const firstWithLoader=withLoader(First)
 
 const singWithLoader=withLoader(SingPage)
@@ -22,6 +25,7 @@ const artisttWithLoader=withLoader(Artist)
   return (
        
    <BrowserRouter>
+   <ScrollToTop/>
      <Routes>
         <Route element={<Layout/>} path='/'>
         <Route index element={<First/>}/>
