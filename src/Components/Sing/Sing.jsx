@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState,useMemo } from 'react'
 import useStyles from './styles'
 import classnames from 'classnames'
 import { useParams } from 'react-router-dom';
@@ -37,36 +37,56 @@ export default function Sing() {
        };
      
        const timerId = setTimeout(changeViewToOne, 0); 
-       btnRef.current.addEventListener('click',changeViewToOne);
+       
+      if(btnRef.current) {btnRef.current.addEventListener('click',changeViewToOne);}
     
       return () => {
         clearTimeout(timerId)
-        btnRef.current.removeEventListener('click',changeViewToOne);
+        if(btnRef.current){btnRef.current.removeEventListener('click',changeViewToOne);}
       }
     }, [ ])
     
     const lastId=sings[sings.length-1].id;
-    const singsAdd=madahi.map((sing)=>({...sing,id:lastId+1+sing.id,type:'مداحی',singerType:'مداحی',src:'/images/madadh.png'}))
+    const singsAdd=madahi.map((sing)=>({...sing,id:lastId+1+sing.id,type:'مداحی',singerType:'مداحی',src:'/images/madah.png'}))
 
     const combineSings=[...sings.map((si)=>({...si,type:'ترانه',singerType:'خواننده',src:'/images/singer.png'})),...singsAdd]
 
-     const filteredSings=combineSings.filter((sing)=>{
-        const artistMatch=sing.artist.toLowerCase().includes(name.toLowerCase());
-        const singMatch=sing.sing.toLowerCase().includes(singname.toLowerCase());
+     
+    const filteredSings = useMemo(() => {
+      const uniqueSings = {};
 
-        return artistMatch && singMatch;
-     })
+      combineSings.forEach((sing) => {
+          const artistMatch = sing.artist.toLowerCase().includes(name.toLowerCase());
+          const singMatch = sing.sing.toLowerCase().includes(singname.toLowerCase());
+
+          if (artistMatch && singMatch) {
+              const key = `${sing.artist}-${sing.sing}`;
+              if (!uniqueSings[key]) {
+                  uniqueSings[key] = sing;
+              }
+          }
+      });
+
+      return Object.values(uniqueSings);
+  }, [combineSings, name, singname]);
     
    
   return (
     <div className={classnames('flex flex-col box-border items-center w-full',classes.root)}>
       {view===1 && <ProcessBar/>}
        <div className={classnames('flex flex-col box-border items-center rounded-sm min-h-28 w-full',classes.main)}>
-        <div className={classnames('grid items-center box-border w-full ' ,classes.header)}>
-            <div className={classnames(classes.header_name)}>1</div>
-            <div className={classnames(classes.header_date_inf0)}>2</div>
-            <div className={classnames(classes.header_up_type)}>3</div>
-        </div>
+
+
+         {filteredSings.map((item)=>{
+            return(
+               <div className={classnames('grid items-center box-border w-full ' ,classes.header)}>
+               <div className={classnames(classes.header_name)}> دانلود {item.type} {item.sing}</div>
+               <div className={classnames(classes.header_date_inf0)}> تاریخ آپلود</div>
+               <div className={classnames(classes.header_up_type)}> جدید،‌ویژه، بزودی</div> 
+           </div>
+            )
+         })}
+       
 
         <div className={classes.body}>
             <div className={classes.info_box}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef,useState } from 'react'
 import useStyles from './styles'
-
+import sings from '../Consts/sings';
+import madahi from '../Consts/madah';
 import {AccountIcon, Down, Menu, MoreHorz, Search, ShopCart} from '../Icons/Icons'
 import { useNavigate,useLocation ,useParams} from 'react-router-dom';
 import MenuBox from './Menu/MenuBox';
@@ -10,6 +11,18 @@ export default function Navbar() {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
   })
+
+  const uniqueArtists = [...new Set(sings.map(song => song.artist))];
+  const artistsArray = uniqueArtists.map((artist, index) => ({
+    id: index + 1,  // شناسه منحصر به فرد
+    name: artist
+}));
+
+const uniqueMadah = [...new Set(madahi.map(song => song.artist))];
+const madahArray = uniqueMadah.map((artist, index) => ({
+  id: index + 1,  // شناسه منحصر به فرد
+  name: artist
+}));
   const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' })
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
     const classes=useStyles();
@@ -103,13 +116,13 @@ export default function Navbar() {
         <li className={classes.nav_list_item} ref={(el)=>(menuButton.current[0]=el)}>
     <span>     مداحی</span> 
     <span><Down/></span>
-    <MenuBox  />
+    <MenuBox list={madahArray} />
 
         </li>
         <li className={classes.nav_list_item} ref={(el)=>(menuButton.current[1]=el)}>
         <span>     موسیقی سنتی</span> 
         <span><Down/></span>
-        <MenuBox  />
+        <MenuBox  list={artistsArray}/>
         
 
         </li>

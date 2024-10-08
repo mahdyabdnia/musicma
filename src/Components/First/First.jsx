@@ -11,8 +11,8 @@ import MainBox from '../MainBox/MainBox';
 export default function First() {
   const classes=useStyles();
    const lastId=sings[sings.length -1 ].id;
-   const singAdd=madahi.map((sing,index)=>({...sing,id:lastId+index+1,type:'مداحی',singerType:'مداح گرامی',src:'/images/madah.png'}));
-   const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:' خوانننده عزیز',src:'/images/singer.png'  })),...singAdd]
+   const singAdd=madahi.map((sing,index)=>({...sing,id:lastId+index+1,type:'مداحی',singerType:'مداح گرامی حاج',src:'/images/madah.png'}));
+   const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:' خواننده عزیز',src:'/images/singer.png'  })),...singAdd]
    const uniqueSings = Array.from(new Set(newSing.map(item => `${item.artist}-${item.sing}`)))
         .map(uniqueKey => {
             return newSing.find(item => `${item.artist}-${item.sing}` === uniqueKey);

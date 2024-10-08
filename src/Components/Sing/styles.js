@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import { blue1, blue2, blue3, darkBlue, darkestBlue, darkwarmblue } from "../Consts/colors";
 
 const useStyles=makeStyles({
 root:{
@@ -25,7 +26,7 @@ header:{
     gridTemplateColumns:'2fr 1fr 1fr',
     flexDirection:'row',
     direction:'rtl',
-    alignItems:'center',
+    alignItems:'stretch',
     width:'100%',
     boxSizing:'border-box',
      
@@ -41,7 +42,7 @@ header_name:{
     whiteSpace:'break-spaces',
     color:'white',
     fontSize:'18px',
-    backgroundColor:'red'
+    backgroundColor: darkestBlue
 
 },
 header_date_inf0:{
@@ -56,7 +57,7 @@ header_date_inf0:{
      fontWeight:'bolder',
      fontSize:'18px',
      color:'white',
-     backgroundColor:'blue'
+     backgroundColor:blue3
 },
 header_up_type:{
     display:'flex',
@@ -68,7 +69,7 @@ header_up_type:{
      fontSize:'18px',
      color:'white',
      fontWeight:'bolder',
-     backgroundColor:'green'
+     backgroundColor:blue1
 
 },
 body:{

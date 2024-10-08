@@ -12,6 +12,7 @@ const useStyles=makeStyles({
 background:' linear-gradient(90deg, rgba(62,58,180,1) 1%, rgba(14,12,144,1) 21%, rgba(60,180,192,1) 52%)',
         boxSizing:'border-box',
         padding:'1vh 1vw',
+        zIndex:'10000000',
         
         width:'100%',
         '@media(max-width:1000px)':{
@@ -29,6 +30,7 @@ flexDirection:'row',
 justifyContent:'space-between',
 alignItems:'center',
 boxSizing:'border-box',
+zIndex:'10000000',
 width:'100%',
 '@media(max-width:1200px)':{
     display:'flex',
@@ -44,6 +46,7 @@ flexDirection:'row',
 
 boxSizing:'border-box',
 alignItems:'center',
+zIndex:'10000000',
 '@media(max-width:1000px)':{
     display:'none'
 }
@@ -58,6 +61,7 @@ alignItems:'center',
      padding:'0',
      margin:'0',
      columnGap:'20px', 
+     zIndex:'10000000',
     },
     nav_list_item:{
    display:'flex',
@@ -68,6 +72,7 @@ alignItems:'center',
    padding:'1vh 1vw',
    fontWeight:'bolder',
    columnGap:'10px',
+   zIndex:'10000000',
    '& span':{
     display:'flex',
     flexDirection:'row',
@@ -84,6 +89,7 @@ alignItems:'center',
     flexDirection:'row',
     columnGap:'20px',
     alignItems:'center',
+    zIndex:'10000000',
     boxSizing:'border-box',
     '@media(max-width:1200px)':{
         display:'flex',
@@ -97,12 +103,13 @@ alignItems:'center',
     nav:{
      display:'flex',
      flexDirection:'row',
-
+     zIndex:'10000000',
     },
     navbar:{
     position:'absolute',
     backgroundColor:'white',
-zIndex:'2',
+    zIndex:'10000000',
+ 
 width:'97vw',
 borderRadius:'5px',
 minHeight:'100px',
@@ -127,6 +134,7 @@ boxSizing:'border-box',
 padding:'1vh 1vw',
 backgroundColor:'white',
 width: '200%',
+zIndex:'10000000',
  
 justifyContent:'space-between',
 '@media(max-width:1200px)':{
@@ -142,6 +150,7 @@ justifyContent:'space-between',
      flexDirection:'row',
      border:'none',
      outline:'none',
+     zIndex:'10000000',
      backgroundColor:'inherit',
      transition:'width 1s',
      width:'100%',

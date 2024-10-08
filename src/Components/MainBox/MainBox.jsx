@@ -16,16 +16,16 @@ export default function MainBox({artist,sing,type,singerType,src}) {
   return (
     <div className={classes.root}>
         <div className={classes.head_info_box}>
-            <div className={classnames(classes.head_one,classes.col)}> دانلود {type} {artist}</div>
+            <div className={classnames(classes.head_one,classes.col)} onClick={()=>{navigate(`/sing/${artist}/${sing}`)}}> دانلود {type} {artist}</div>
             <div className={classnames(classes.head_two,classes.col)}>تاریخ آپلود</div>
             <div className={classnames(classes.head_the,classes.col)}>جدید، ویژه، بزودی </div>
         </div>
 
         <div className={classes.body}>
-            <div className={classes.body_info_box}>
+            <div className={classes.body_info_box}> 
                 <h1 className={classes.info_header}>دانلود {type} {sing} {artist}</h1>  
                 <h3>جدید‌ترین اثر </h3>
-                <h1 className={classes.info_header}> {singerType} عزیز {artist}</h1>
+                <h1 className={classes.info_header}> {singerType}  {artist}</h1>
                 <h1 className={classes.info_header}> به همراه متن {type}</h1>
             </div> 
 

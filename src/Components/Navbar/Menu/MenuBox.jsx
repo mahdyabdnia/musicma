@@ -2,7 +2,7 @@ import React,{useEffect,useRef} from 'react'
 import useStyles from './styles'
 import { useNavigate } from 'react-router-dom'
 
-export default function MenuBox({refer}) { 
+export default function MenuBox({refer,list}) { 
     const classes=useStyles()
     const itemRef=useRef(null)
     useEffect(() => {
@@ -35,9 +35,9 @@ export default function MenuBox({refer}) {
   return (
     <div className={classes.menu} ref={refer}>
       <ul className={classes.menu_list}>
-        {singers.map((item)=> {
+        {list.map((item)=> {
           return(
-            <li className={classes.menu_list_item} key={item.id} onClick={()=>{navigate(`/artist/${item.name}`)}}> {item.name}  </li>
+            <li className={classes.menu_list_item}   onClick={()=>{navigate(`/artist/${item.name}`)}}> {item.name}  </li>
           )
         })}
         
