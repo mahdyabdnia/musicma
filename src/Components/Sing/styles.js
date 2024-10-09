@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import { blue1, blue2, blue3, darkBlue, darkestBlue, darkwarmblue } from "../Consts/colors";
+import { back1, back2, blue1, blue2, blue3, darkBlue, darkestBlue, darkwarmblue } from "../Consts/colors";
 
 const useStyles=makeStyles({
 root:{
@@ -82,8 +82,8 @@ body:{
     padding:'2vh 1vmax',
     color:'rgba(0,0,0,0.5)',
     width:'100%',
-    background: 'rgb(131,175,235)', 
-background: 'linear-gradient(98deg, rgba(131,175,235,1) 0%, rgba(143,139,236,1) 48%, rgba(62,138,249,1) 100%)'
+    background: back1,
+background:back2  
 
 
 },

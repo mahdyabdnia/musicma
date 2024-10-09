@@ -31,7 +31,7 @@ export default function MainBox({artist,sing,type,singerType,src}) {
 
             <div className={classes.tools_box}>
             
-              <div className={classes.img_box}>
+              <div className={classes.img_box} onClick={()=>{navigate(`/sing/${artist}/${sing}`)}}>
                 <img src={`${process.env.PUBLIC_URL}${src}`} alt="" />
               </div>
              

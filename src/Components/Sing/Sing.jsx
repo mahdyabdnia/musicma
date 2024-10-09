@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState,useMemo } from 'react'
 import useStyles from './styles'
 import classnames from 'classnames'
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import sings from '../Consts/sings';
 import madahi from '../Consts/madah';
 import { PlayMusic } from '../Icons/Icons';
@@ -18,6 +18,7 @@ export default function Sing() {
     const [textArea,setText]=useState('')
     const {singname}=useParams()
     const [view,setView]=useState(0);
+    const navigate=useNavigate();
     const handleClick=(e)=>{
       e.preventDefault();
      setComment([...comments,{name:username,email:email,comment:textArea}]);
@@ -74,48 +75,42 @@ export default function Sing() {
   return (
     <div className={classnames('flex flex-col box-border items-center w-full',classes.root)}>
       {view===1 && <ProcessBar/>}
-       <div className={classnames('flex flex-col box-border items-center rounded-sm min-h-28 w-full',classes.main)}>
+ 
+      {filteredSings.map((item)=>{
+            return(   <div className={classnames('flex flex-col box-border items-center rounded-sm min-h-28 w-full',classes.main)}>
 
 
-         {filteredSings.map((item)=>{
-            return(
+        
                <div className={classnames('grid items-center box-border w-full ' ,classes.header)}>
                <div className={classnames(classes.header_name)}> دانلود {item.type} {item.sing}</div>
                <div className={classnames(classes.header_date_inf0)}> تاریخ آپلود</div>
                <div className={classnames(classes.header_up_type)}> جدید،‌ویژه، بزودی</div> 
            </div>
-            )
-         })}
-       
+      
 
         <div className={classes.body}>
             <div className={classes.info_box}>
-                 {filteredSings.map((item)=>{
-                    return(
-                        <>
+                
                         <h1 className={classes.info_title}> دانلود {item.type} جدید {item.artist}   </h1>
                         <h3 className={classnames(classes.info_add,'flex-row flex text-center box-border font-normal  ')}>{item.type} {item.sing} از {item.singerType} عزیز به همراه متن {item.type}</h3>
                         
-                        </>
-                    )
-                 })}
+                   
                 
             </div>
 
-            {filteredSings.map((sing)=>{return(
+        
               <div className={classnames(classes.image_box,'flex flex-row justify-center items-center')}>
               <div className={classes.img_block}>
-                 <img src={`${process.env.PUBLIC_URL}${sing.src}`} alt="" className={classes.img}/>
+                 <img src={`${process.env.PUBLIC_URL}${item.src}`} alt="" className={classes.img}/>
               </div>
          </div>
-            )})}
+        
 
 
 
-           {filteredSings.map((sing)=>{
-            return(
+          
                 <div className={classes.btn_box}>
-                <button  className={classes.btn} style={{backgroundColor:'#0f8a8a'}}>آرشیو {sing.type} های {sing.artist} </button>
+                <button  className={classes.btn} style={{backgroundColor:'#0f8a8a'}} onClick={()=>{navigate(`/archive/${item.artist}`)}}>آرشیو {item.type} های {item.artist} </button>
                 <button className={classes.btn} style={{backgroundColor:'#0f6d8a'}}><span>پخش آنلاین </span> <span> <PlayMusic/></span></button>
                 <button className={classes.btn} style={{backgroundColor:'#8a0f32'}}>
                 <span className='border-yellow-100 border-x-4 border-solid'>
@@ -132,8 +127,7 @@ export default function Sing() {
                 </button>
                 <button className={classes.btn} style={{backgroundColor:'#8a0f32'}}><span ><Download/></span>دانلود با کیفیت ۳۲۰ </button>
             </div>
-            )
-           })}
+       
 
 
            <div className={classes.sing_text_box}>
@@ -142,20 +136,19 @@ export default function Sing() {
               </div>
               <div className={classes.text_box}>
                <p className={classes.text}>
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
-               متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه متن ترانه
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+               متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type} متن {item.type}
+                
                </p>
               </div>
 
@@ -167,7 +160,9 @@ export default function Sing() {
             
             
         </div>
-       </div>
+       </div>        )
+         })}
+     
 
        <div className={classes.sug_box}>
          <div className={classes.sug_head}>پیشنهاد موزیک ما</div>

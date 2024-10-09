@@ -21,7 +21,7 @@ export default function Archive() {
 
 
 
-  const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:'خواننده',src:'/images/singer.png'}))];
+  const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:'خواننده',src:'/images/singer.png'})),...singAdd];
   const filteredSing=newSing.filter((sing)=>{
     const artistMatch=sing.artist.toLowerCase().includes(name.toLowerCase());
       return artistMatch;

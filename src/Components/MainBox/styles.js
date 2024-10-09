@@ -40,7 +40,8 @@ head_info_box:{
 col:{
 flex:'1',
 minHeight:'max-content',
-padding:'2vh 1vmax !important'
+padding:'2vh 1vmax !important',
+cursor:'pointer'
 },
 head_one:{
 backgroundColor:blue1,
@@ -189,10 +190,14 @@ img_box:{
     alignItems:'center',
     justifyContent:'center',
     boxSizing:'border-box',
+    cursor:'pointer',
     borderRadius:'5px',
     boxShadow:'0px 0px 1px 2px rgba(0,0,0,0.5)',
     width:'150px',
     aspectRatio:'1/1',
+    '&:hover':{
+    boxShadow:'0px 0px 1px 3px rgba(0,0,0,0.4)'
+    },
     '& img':{
         objectFit: 'contain'
     }
