@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import { blue1, blue2 } from "../Consts/colors";
 
 const useStyles=makeStyles({
  root:{
@@ -16,9 +17,13 @@ const useStyles=makeStyles({
     borderRadius:'5px',
     border:'1px solid rgba(0,0,0,0.3)',
     boxSizing:'border-box',
-    backgroundColor:'blue',
+    backgroundColor:blue2,
     color:'white',
-    width:'100%'
+    width:'100%',
+    padding:'2vh 1vmax',
+    fontSize:'20px',
+    textShadow:'0px 0px 4px rgba(0,0,0,0.7)',
+    fontWeight:'bolder'
  },
  filter_box:{
     display:'flex',

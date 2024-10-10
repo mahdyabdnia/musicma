@@ -8,6 +8,7 @@ import { Down, LeftArrow, RightArrow } from '../Icons/Icons';
 import { MoreHoriz } from '@mui/icons-material';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import MainBox from '../MainBox/MainBox';
+import { useLocation } from 'react-router-dom';
 export default function First() {
   const classes=useStyles();
    const lastId=sings[sings.length -1 ].id;
@@ -31,7 +32,7 @@ export default function First() {
   const [first, setFirst] = useState(false)
   const [last, setLast] = useState(false)
   const totalPage=Math.ceil(uniqueSings.length/itemsPerPage) 
-
+  const path=useLocation()
   const handlePageClick=(page)=>{
   setCurrentPage(page);
   window.scrollTo(0,0)
@@ -98,7 +99,7 @@ export default function First() {
       })}
    
     }
-  }, [ ])
+  }, [path ])
   
  
   useEffect(() => {

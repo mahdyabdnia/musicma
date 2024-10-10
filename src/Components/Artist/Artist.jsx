@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import useStyles from './styles'
 import Box from './Box/Box';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import sings from '../Consts/sings';
 import madahi from '../Consts/madah';
 import { LeftArrow, RightArrow } from '../Icons/Icons';
@@ -10,6 +10,7 @@ import MainBox from '../MainBox/MainBox';
 export default function Artist() { 
     const classes=useStyles();
     const {name}=useParams();
+    const path=useLocation()
     const [view, setView] = useState(0)  
     const lastId=sings[sings.length -1].id;
     const singsAdd=madahi.map((sing,index)=>({
@@ -46,7 +47,7 @@ export default function Artist() {
       return () => {
          clearTimeout(changeViewToOne)
       }
-    }, [name])
+    }, [name,path])
     
     const [currentPage, setcurrentPage] = useState(1)
     const [itemPerPage,setItemsPerPage]=useState(30);

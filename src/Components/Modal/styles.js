@@ -47,7 +47,8 @@ close_btn:{
     position:'relative',
     left:'10px',
     top:'10px',
-    cursor:'pointer'
+    cursor:'pointer',
+    color:'black'
 
 },
 head:{

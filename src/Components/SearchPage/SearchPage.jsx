@@ -216,7 +216,7 @@ export default function SearchPage() {
     <div className={classes.root}>
    {view===1 &&  <ProcessBar/>} 
         <div className={classes.header}>
-            <h1>جستجوی:{text} </h1>
+            <h1>کلمه در حال جستجو: {text} </h1>
         </div>
         <div className={classes.filter_box}>
             <div className={classes.filter}>
@@ -249,7 +249,7 @@ export default function SearchPage() {
              </div>
             </div>
 
-            <button className={classes.filter_btn} onClick={reset}>بازنشانی فیلتر</button>
+            <button className={classes.filter_btn} onClick={reset}>بازنشانی فیلتر</button> 
         </div>
         {view===0 && <>
          {uniqueSings.slice(start,end).map((item)=>{
