@@ -1,10 +1,13 @@
 import React,{useEffect,useRef} from 'react'
 import useStyles from './styles'
-import { useNavigate } from 'react-router-dom'
-
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import MicExternalOnIcon from '@mui/icons-material/MicExternalOn';
+import MicIcon from '@mui/icons-material/Mic';
 export default function MenuBox({refer,list}) { 
     const classes=useStyles()
     const itemRef=useRef(null)
+    const path=useLocation();
+    const params=useParams();
     useEffect(() => {
       const close = (event) => {
           const parent = event.currentTarget.parentElement.parentElement;
@@ -24,7 +27,7 @@ export default function MenuBox({refer,list}) {
               });
           }
       };
-  }, []);
+  }, [path,params]);
     
     const singers=[{id:'0',name:'مهدی یغمایی'},{id:'1',name:'علی لهراسبی'},{id:'2',name:'مهدی مقدم'},
       {id:'3',name:'مهدی یراحی'}, {id:'4',name:'علی زندوکیلی'},{id:'5',name:'مجید اخشابی'},
@@ -37,7 +40,9 @@ export default function MenuBox({refer,list}) {
       <ul className={classes.menu_list}>
         {list.map((item)=> {
           return(
-            <li className={classes.menu_list_item}   onClick={()=>{navigate(`/artist/${item.name}`)}}> {item.name}  </li>
+            <li className={classes.menu_list_item}   onClick={()=>{navigate(`/artist/${item.name}`)}}> <span>
+             < MicIcon/>  
+            </span>  {item.name}  </li>
           )
         })}
         

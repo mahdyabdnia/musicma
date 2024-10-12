@@ -22,13 +22,22 @@ export default function SideBoxT() {
         .sort((a, b) => b.count - a.count);
     
     // مرحله 3: انتخاب ۳۰ خواننده با بیشترین آهنگ
-    const topArtists = sortedArtists.slice(0, 30);
+    const topArtists = sortedArtists.slice(0, 30); 
     
   return (
     <div className={classes.box}>
         <div className={classes.header}>
-         <h2>اسامی مداحان</h2>
-        <img src={`${process.env.PUBLIC_URL}/images/madah.png`} alt=""  className={classes.header_img}/>
+            <img src={`${process.env.PUBLIC_URL}/images/madah.png`} alt=""  className={classes.header_img}/>
+            <div className={classes.header_list}>
+            <h2 className={classes.header_name}>اسامی مداحان</h2>
+            <h3 className={classes.header_eng}>Maddah List</h3>
+            </div>
+
+        
+        </div>
+
+        <div className={classes.divider_box}>
+            <div className={classes.divider}></div>
         </div>
 
         <div className={classes.list_box}>

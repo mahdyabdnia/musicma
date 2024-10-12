@@ -19,20 +19,40 @@ header:{
     columnGap:'30px',
 
 },
+header_name:{
+fontSize:'20px'
+},
 header_img:{
    width:'100px',
    aspectRatio:'1/1'
 },
+divider_box:{
+display:'flex',
+flexDirection:'row',
+alignItems:'center',
+justifyContent:'center',
+boxSizing:'border-box',
+padding:'2vh 0.1vmax',
+
+},
+divider:{
+ width:'100%',
+ height:'2px',
+ border:'none',
+ backgroundColor:'rgba(0,0,0,0.5)'
+},
 list_box:{
     display:'flex',
     flexDirection:'column',
-    alignItems:'center'
+    alignItems:'center',
+    boxSizing:'border-box',
+    padding:'1vh 1vmax'
 },
 singer_list:{
     display:'grid',
     gridTemplateColumns:'50% 50%',
     justifyContent:'space-between',
-    listStyleType:'none',
+    listStyleType:'disc',
     padding:'0',
     margin:'0',
     width:'100%',
@@ -42,8 +62,9 @@ singer_list:{
 },
 singer_list_item:{
     fontWeightl:'border',
-    fontSize:'20px',
+    fontSize:'18px',
     cursor:'pointer',
+    color:'rgba(0,0,0,0.7)',
     '&:hover':{
         color:'#de072b',
         transform: 'scale(1.1)'

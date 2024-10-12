@@ -1,5 +1,5 @@
 import React from 'react'
-import useStyles from './styles'
+import useStyles from '../SideBoxT/styles'
 import sings from '../../../Consts/sings'
 import { useNavigate } from 'react-router-dom'
 export default function SideBox() {
@@ -18,7 +18,7 @@ export default function SideBox() {
     
     // مرحله 2: تبدیل به آرایه و مرتب‌سازی بر اساس تعداد آهنگ‌ها
     const sortedArtists = Object.entries(artistCount)
-        .map(([artist, count]) => ({ artist, count }))
+        .map(([artist, count]) => ({ artist, count })) 
         .sort((a, b) => b.count - a.count);
     
     // مرحله 3: انتخاب ۳۰ خواننده با بیشترین آهنگ
@@ -27,8 +27,17 @@ export default function SideBox() {
   return (
     <div className={classes.box}>
         <div className={classes.header}>
-         <h2>اسامی خوانندگان</h2>
         <img src={`${process.env.PUBLIC_URL}/images/singer.png`}alt=""  className={classes.header_img}/>
+        <div className={classes.header_list}>
+        <h2 className={classes.header_name}>اسامی خوانندگان</h2>
+        <h3 className={classes.header_eng}>Singer Lists</h3>
+        </div>
+       
+      
+        </div>
+
+        <div className={classes.divider_box}>
+            <div className={classes.divider}></div>
         </div>
 
         <div className={classes.list_box}>

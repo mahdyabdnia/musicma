@@ -46,6 +46,7 @@ flexDirection:'row',
 
 boxSizing:'border-box',
 alignItems:'center',
+width:'100%',
 zIndex:'10000000',
 '@media(max-width:1000px)':{
     display:'none'
@@ -62,11 +63,13 @@ zIndex:'10000000',
      margin:'0',
      columnGap:'20px', 
      zIndex:'10000000',
+     position:'relative',
+    
     },
     nav_list_item:{
    display:'flex',
    flexDirection:'row',
-   position:'relative',
+  
    boxSizing:'border-box',
    alignItems:'center',
    padding:'1vh 1vw',

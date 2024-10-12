@@ -36,7 +36,7 @@ const madahArray = uniqueMadah.map((artist, index) => ({
     const handleInput=(event)=>{
     setvalue(event.target.value);
     }
-    const {name}=useParams()
+    const params=useParams()
 
    
        
@@ -85,10 +85,10 @@ const madahArray = uniqueMadah.map((artist, index) => ({
       // Close all menus when the route changes
     if(menuButton.current)  {menuButton.current.forEach((element) => {
         if (element.lastElementChild) {
-          element.lastElementChild.style.display = 'none';
+          element.lastElementChild.style.display = 'none'; 
         }
       });}
-    }, [location,name]);
+    }, [location,params]);
     
   return (
     <header className={classes.header}>
@@ -120,7 +120,7 @@ const madahArray = uniqueMadah.map((artist, index) => ({
 
         </li>
         <li className={classes.nav_list_item} ref={(el)=>(menuButton.current[1]=el)}>
-        <span>     موسیقی سنتی</span> 
+        <span>     موسیقی پاپ</span> 
         <span><Down/></span>
         <MenuBox  list={artistsArray}/>
         
