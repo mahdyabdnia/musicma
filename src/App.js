@@ -13,6 +13,7 @@ import Archive from './Components/Archive/Archive'
 import './index.css'
 import Sing from './Components/Sing/Sing'
 import ScrollToTop from './Scroll'
+import Album from './Components/Album/Album'
 const firstWithLoader=withLoader(First)
 
 const singWithLoader=withLoader(SingPage)
@@ -33,6 +34,7 @@ const artisttWithLoader=withLoader(Artist)
         <Route path='/artist/:name' element={<Artist/>}/>
         <Route path='/search/:text' element={<SearchPage/>}/>
         <Route path='/archive/:name' element={<Archive/>}/>
+        <Route path='/album' element={<Album/>} />
 
         
         
