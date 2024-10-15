@@ -1,4 +1,4 @@
-import React, { useRef,useEffect } from 'react'
+import React, { useRef,useEffect,useState } from 'react'
 import useStyles from './styles'
  
  
@@ -11,6 +11,17 @@ import { Email } from '@mui/icons-material';
 export default function Album() {
     const classes=useStyles();
     const menuRef=useRef([]);
+    const [name,setName]=useState('')
+    const [email,setEmail]=useState('')
+    const [text,setText]=useState('');
+   const [comment, setComment] = useState([ ])
+   const handleClick=(e)=>{
+e.preventDefault();
+setComment([...comment,{name:name,email:email,text:text}])
+setText('')
+setEmail('')
+setName('')
+   }
     useEffect(() => {
         const openModal=(event)=>{
             if(event.currentTarget){   event.currentTarget.nextElementSibling.style.display="flex";}
@@ -113,17 +124,33 @@ export default function Album() {
                <div className={classes.user_email_box}>
                 <div className={classes.user_input_box}>
                   <span><User/></span>
-                  <input type="text" className={classes.user_input}  placeholder='نام کاربری'/>
+                  <input type="text" className={classes.user_input} value={name} onChange={(event)=>{setName(event.target.value)}} placeholder='نام کاربری'/>
                 </div>
 
                 <div className={classes.email_input_box}>
                   <span><Email/></span>
-                  <input type="email" className={classes.email_input} placeholder='ایمیل' />
+                  <input type="email" className={classes.email_input} placeholder='ایمیل' value={email} onChange={(event)=>{setEmail(event.target.value)}}/>
                 </div>
                </div>
                <div className={classes.text_send_box}>
-                <textarea name="" id="" className={classes.comment_text} placeholder='لطفا نظر خود را وارد کنید'></textarea>
-                <button className={classes.set_comment}>ثبت نظر</button>
+                <textarea name="" id="" className={classes.comment_text} onChange={(event)=>{setText(event.target.value)}} placeholder='لطفا نظر خود را وارد کنید'></textarea>
+                <button className={classes.set_comment} onClick={handleClick}>ثبت نظر</button>
+               </div>
+
+
+               <div className={classes.comments_block_box}>
+                {comment.map((item)=>{
+                  return(
+                    <div className={classes.comment_block}>
+                    <span><User/></span>
+                    <span>{item.name}</span>
+                    <span className={classes.ver_divider}> </span>
+                    <span className={classes.sd_comment}>{item.text}</span>
+                     
+                  </div>
+                  )
+                })}
+                
                </div>
             </div>
 

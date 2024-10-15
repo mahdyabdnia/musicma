@@ -374,6 +374,7 @@ text_send_box:{
     width:'100%',
     boxSizing:'border-box',
     padding:'1vh 1vmax',
+    rowGap:'20px'
     
 },
 comment_text:{
@@ -406,7 +407,58 @@ set_comment:{
     display:'flex',
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+    boxSizing:'border-box',
+     fontWeight:'bolrder',
+    padding:'1vh 1vmax',
+    fontSize:'20px',
+    textShadow:'0px 0px 1px rgba(0,0,0,0.5)'
+},
+comments_block_box:{
+    display:'flex',
+    flexDirection:'column',
+    marginTop:'20px',
+    rowGap:'20px',
+    backgroundColor:'inherit',
+    width:'100%',
+    boxSizing:'border-box',
+    alignItems:'center',
+    justifyContent:'flex-start',
+    height:'auto'
+
+},
+comment_block:{
+   display:'grid',
+   gridTemplateColumns:'5%  10% 2% 83%',
+    alignItems:'center',
+    justifyContent:'flex-start',
+    border:'1px solid rgba(0,0,0,0.6)',
+    boxShadow:'0px 0px 1px 1px rgba(0,0,0,0.6)',
+    boxSizing: 'border-box',
+    padding:'1vh 1vmax',
+    width:'100%',
+    height:'auto',
+    color:'black',
+    fontSize:'17px',
+    fontWeight:'500',
+    whiteSpace:'break-spaces',
+    borderRadius:'5px'
+
+},
+ver_divider:{
+    display:'flex',
+    flexDirection:'row',
+    width:'0.5px',
+    height:'20px',
+    backgroundColor:'rgba(0,0,0,0.6)',
+},
+sd_comment:{
+   color:'rgba(0,0,0,0.8)',
+   textAlign:'center',
+   fontSize:'17px',
+   whiteSpace:'break-spaces',
+   
+
 }
 
 })
