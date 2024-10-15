@@ -1,14 +1,36 @@
-import React from 'react'
+import React, { useRef,useEffect } from 'react'
 import useStyles from './styles'
  
  
 import MiniMusicPlayer from '../MiniMusicPlayer/MusicPlayer';
 import Modal from '../Modal/Modal';
+import { User } from '../Consts/Icons';
+import { Email } from '@mui/icons-material';
  
 
 export default function Album() {
     const classes=useStyles();
-
+    const menuRef=useRef([]);
+    useEffect(() => {
+        const openModal=(event)=>{
+            if(event.currentTarget){   event.currentTarget.nextElementSibling.style.display="flex";}
+      
+        }
+      if(menuRef.current){
+        for(var i=0;i<menuRef.current.length;i++){
+            menuRef.current[i].addEventListener('click',openModal )
+        }
+      }
+    
+      return () => {
+        if(menuRef.current){
+            for(var i=0;i<menuRef.current.length;i++){
+                menuRef.current[i].removeEventListener('click',openModal)
+            }
+        }
+      }
+    }, [])
+    
     const open=()=>{
         document.getElementsByClassName('modal')[0].style.display="flex"
         
@@ -41,7 +63,7 @@ export default function Album() {
                             <li className={classes.music_list_item}>
                               <span className={classes.music_name}>  آهنگ ... </span>
                               <MiniMusicPlayer src={`${process.env.PUBLIC_URL}/media/aboozar.mp3`}/>
-                              <span className={classes.music_dl} onClick={open}>دانلود </span>
+                              <span className={classes.music_dl}   ref={(el)=>(menuRef.current[0]=el)}>دانلود </span>
                               <Modal src={`${process.env.PUBLIC_URL}/media/aboozar.mp3`} className='modal'/>
                              
                               <span className={classes.music_page_link}>صفحه موزیک</span>
@@ -50,8 +72,8 @@ export default function Album() {
                             <li className={classes.music_list_item}>
                               <span className={classes.music_name}>  آهنگ ... </span>
                               <MiniMusicPlayer src={`${process.env.PUBLIC_URL}/media/rafighShahid.mp3`}/>
-                              <span className={classes.music_dl}>دانلود </span>
-                              <Modal src={`${process.env.PUBLIC_URL}/media/rafighShahid.mp3`} />
+                              <span className={classes.music_dl} ref={(el)=>(menuRef.current[1]=el)}>دانلود </span>
+                              <Modal src={`${process.env.PUBLIC_URL}/media/rafighShahid.mp3`} className='modal'/>
                             
                               
                               <span className={classes.music_page_link}>صفحه موزیک</span>
@@ -61,8 +83,8 @@ export default function Album() {
                             <li className={classes.music_list_item}>
                               <span className={classes.music_name}>  آهنگ ... </span>
                               <MiniMusicPlayer src={`${process.env.PUBLIC_URL}/media/salamFarmandeh.mp3`}/>
-                              <span className={classes.music_dl}>دانلود </span>
-                              <Modal src={`${process.env.PUBLIC_URL}/media/salamFarmandeh.mp3`}/>
+                              <span className={classes.music_dl} ref={(el)=>(menuRef.current[2]=el)}>دانلود </span>
+                              <Modal src={`${process.env.PUBLIC_URL}/media/salamFarmandeh.mp3`} className='modal'/>
                               
                               <span className={classes.music_page_link}>صفحه موزیک</span>
                               <span className={classes.music_divider}></span>
@@ -77,6 +99,38 @@ export default function Album() {
             </div>
         </div>
       </div>
+
+      
+      <div className={classes.comment_box}>
+        <div className={classes.comment_box_body}>
+            <div className={classes.comment_header}>
+                <div className={classes.hr}></div> 
+                <div className={classes.head}>کامنت خود را وارد کنید</div>
+                <div className={classes.hr}></div>
+            </div>
+
+            <div className={classes.comment_main_box}>
+               <div className={classes.user_email_box}>
+                <div className={classes.user_input_box}>
+                  <span><User/></span>
+                  <input type="text" className={classes.user_input}  placeholder='نام کاربری'/>
+                </div>
+
+                <div className={classes.email_input_box}>
+                  <span><Email/></span>
+                  <input type="email" className={classes.email_input} placeholder='ایمیل' />
+                </div>
+               </div>
+               <div className={classes.text_send_box}>
+                <textarea name="" id="" className={classes.comment_text} placeholder='لطفا نظر خود را وارد کنید'></textarea>
+                <button className={classes.set_comment}>ثبت نظر</button>
+               </div>
+            </div>
+
+        </div>
+      </div>
+
+
     </div>
   )
 }

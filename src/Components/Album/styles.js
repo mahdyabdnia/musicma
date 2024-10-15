@@ -195,7 +195,7 @@ music_dl:{
     padding:'1vh 5vmax',
     fontWeight:'bolder',
     fontSize:'20px',
-    
+
     '&:hover':{
         backgroundColor:darkPink,
         color:'white',
@@ -236,7 +236,179 @@ music_page_link:{
 
 
     }
+},
+comment_box:{
+    display:'flex',
+    flexDirection:'column',
+    backgroundColor:blue3,
+    boxSizing:'border-box',
+    width:'100%',
+    borderRadius:'5px',
+    alignItems:'center',
+    padding:'1.5vh 1vmax',
+    marginTop:'20px'
+},
+comment_box_body:{
+    display:'flex',
+    flexDirection:'column',
+    borderRadius:'5px',
+    border:'1px solid rgba(0,0,0,0.5)',
+    backgroundColor:'white',
+    boxSizing:'border-box',
+    padding:'1vh 1vmax',
+    width:'100%'
+
+},
+comment_header:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    columnGap:'20px',
+
+},
+hr:{
+    height:'1px',
+    border:'none',
+    backgroundColor:'rgba(0,0,0,0.5)',
+    width:'100%'
+},
+head:{
+    fontWeight:'bolder',
+    fontSize:'20px',
+    color:'rgba(0,0,0,0.5)',
+    textAlign:'center',
+    width:'100%'
+},
+comment_main_box:{
+    display:'flex',
+    flexDirection:'column',
+    rowGap:'20px',
+    boxSizing:'border-box',
+    justifyContent:'flex-start',
+    alignItems:'center',
+    width:'100%',
+    height:'auto',
+    rowGap:'20px'
+
+
+},
+user_email_box:{
+   display:'grid',
+   alignItems:'center',
+    gridTemplateColumns:'1fr 1fr',
+    justifyContent:'space-between',
+   columnGap:'20px',
+   boxSizing:'border-box',
+   padding:'1vh 1vmax',
+
+
+},
+user_input_box:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'flex-start',
+    boxSizing:'border-box',
+    padding:'1vh 1vmax',
+    border:'1px solid rgba(0,0,0,0.50)',
+    borderRadius:'5px',
+    '&:focus':{
+    border:'1px solid rgba(0,0,0,0.9)'
 }
+
+},
+user_input:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    width:'100%',
+    border:'none',
+    outline:'none',
+    width:'100%',
+    height:'100%',
+    boxSizing:'border-box',
+    padding:'1vh 1vmax',
+    cursor:'pointer',
+    fontSize:'18px',
+    color:'rgba(0,0,0,0.7)',
+    fontWeight:'bolder',
+
+},
+email_input_box:{
+display:'flex',
+flexDirection:'row',
+alignItems:'center',
+justifyContent:'flex-start',
+borderRadius:'5px',
+boxSizing:'border-box',
+border:'1px solid rgba(0,0,0,0.6)',
+padding:'1vh 1vmax',
+borderRadius:'5px',
+'&:focus':{
+    border:'1px solid rgba(0,0,0,0.9)'
+}
+
+
+},
+email_input:{
+display:'flex',
+flexDirection:'row',
+alignItems:'center',
+justifyContent:'flex-start',
+boxSizing:'border-box',
+padding:'1vh 1vmax',
+border:'none',
+outline:'none',
+fontSize:'18px',
+color:'rgba(0,0,0,0.6)',
+fontWeight:'bolder',
+width:'100%',
+height:'100%',
+ cursor:'pointer'
+},
+text_send_box:{
+    display:'flex',
+    flexDirection:'column',
+    alignItems:'flex-start',
+    width:'100%',
+    boxSizing:'border-box',
+    padding:'1vh 1vmax',
+    
+},
+comment_text:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    textAlign:'justify',
+    borderRadius:'5px',
+    border:'1px solid rgba(0,0,0,0.6)',
+    fontSize:'18px',
+    width:'100%',
+    height:'100px',
+    color:'rgba(0,0,0,0.6)',
+    fontWeight:'bolder',
+    cursor:'pointer',
+    resize:'none',
+    padding:'1vh 1vmax',
+    
+
+
+
+    '&:focus':{
+        boxShadow:'0px 0px 4px 1px rgba(0,0,0,0.6)'
+    }
+},
+set_comment:{
+    color:'white',
+    backgroundColor:blue3,
+    borderRadius:'5px',
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center'
+}
+
 })
 
 
