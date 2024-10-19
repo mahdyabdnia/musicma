@@ -4,6 +4,7 @@ import Box from './Box/Box';
 import { useLocation, useParams } from 'react-router-dom';
 import sings from '../Consts/sings';
 import madahi from '../Consts/madah';
+import albums from '../Consts/albums';
 import { LeftArrow, RightArrow } from '../Icons/Icons';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import MainBox from '../MainBox/MainBox';
@@ -18,9 +19,13 @@ export default function Artist() {
       id:lastId+index+1,
       type:'مداحی',
       singerType:'مداح',
-      src:'/images/madah.png'
+      src:'/images/madah.png',
+      album:'',
+      track:'yes'
     }))
-    const combineSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:'خواننده',src:'/images/singer.png'})),...singsAdd];
+    const combineSing=[...sings.map((sing)=>({...sing,type:'ترانه',album:'',track:'yes',singerType:'خواننده',src:'/images/singer.png'})),...singsAdd,
+      ...albums.map((al)=>({...al,track:'yes',src:'/images/singer.png',type:'ترانه',singerType:'خواننده عزیز'}))
+    ];
     const filteredSings=combineSing.filter((sing)=>{
       const artistMatch=sing.artist.toLowerCase().includes(name.toLowerCase());
       return artistMatch;
@@ -89,7 +94,7 @@ export default function Artist() {
         </div>
         {uniqueSings.slice(start,end).map((item,index)=>{
           return(
-            <MainBox artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType} src={item.src}/>
+            <MainBox artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType} src={item.src} track={item.track} album={item.album}/>
           )
         })}
     

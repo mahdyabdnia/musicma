@@ -4,6 +4,7 @@ import classnames from 'classnames'
 import { useParams,useNavigate } from 'react-router-dom';
 import sings from '../Consts/sings';
 import madahi from '../Consts/madah';
+import albums from '../Consts/albums';
 import { PlayMusic } from '../Icons/Icons';
 import { Download } from '../Consts/Icons';
 import { Email, Person } from '@mui/icons-material';
@@ -48,9 +49,11 @@ export default function Sing() {
     }, [ ])
     
     const lastId=sings[sings.length-1].id;
-    const singsAdd=madahi.map((sing)=>({...sing,id:lastId+1+sing.id,type:'مداحی',singerType:'مداحی',src:'/images/madah.png'}))
+    const singsAdd=madahi.map((sing)=>({...sing,id:lastId+1+sing.id,type:'مداحی',singerType:'مداحی',src:'/images/madah.png',track:'yes',album:''}))
 
-    const combineSings=[...sings.map((si)=>({...si,type:'ترانه',singerType:'خواننده',src:'/images/singer.png'})),...singsAdd]
+    const combineSings=[...sings.map((si)=>({...si,type:'ترانه',singerType:'خواننده',src:'/images/singer.png',track:'yes',album:''})),...singsAdd,
+      ...albums.map((al)=>({...al,type:'ترانه',singerType:'خواننده عزیز',src:'/images/singer.png',track:'yes'}))
+    ]
 
      
     const filteredSings = useMemo(() => {

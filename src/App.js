@@ -34,7 +34,7 @@ const artisttWithLoader=withLoader(Artist)
         <Route path='/artist/:name' element={<Artist/>}/>
         <Route path='/search/:text' element={<SearchPage/>}/>
         <Route path='/archive/:name' element={<Archive/>}/>
-        <Route path='/album' element={<Album/>} />
+        <Route path='/album/:singername/:albumname' element={<Album/>} />
 
         
         

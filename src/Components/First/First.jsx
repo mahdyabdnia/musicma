@@ -3,6 +3,7 @@ import useStyles from './styles'
 import Box from './Box/Box';
 import sings from '../Consts/sings';
 import madahi from '../Consts/madah';
+import albums from '../Consts/albums';
 import { collapseClasses } from '@mui/material';
 import { Down, LeftArrow, RightArrow } from '../Icons/Icons';
 import { MoreHoriz } from '@mui/icons-material';
@@ -12,8 +13,10 @@ import { useLocation } from 'react-router-dom';
 export default function First() {
   const classes=useStyles();
    const lastId=sings[sings.length -1 ].id;
-   const singAdd=madahi.map((sing,index)=>({...sing,id:lastId+index+1,type:'مداحی',singerType:'مداح گرامی حاج',src:'/images/madah.png'}));
-   const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:' خواننده عزیز',src:'/images/singer.png'  })),...singAdd]
+   const singAdd=madahi.map((sing,index)=>({...sing,id:lastId+index+1,type:'مداحی',album:'',track:'yes',singerType:'مداح گرامی حاج',src:'/images/madah.png'}));
+   const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:' خواننده عزیز',src:'/images/singer.png',album:'',track:'yes'  })),...singAdd,
+    ...albums.map((al)=>({...al,type:'ترانه',track:'yes',singerType:'خواننده عزیز',src:'/images/singer.png'}))
+   ]
    const uniqueSings = Array.from(new Set(newSing.map(item => `${item.artist}-${item.sing}`)))
         .map(uniqueKey => {
             return newSing.find(item => `${item.artist}-${item.sing}` === uniqueKey);
@@ -75,12 +78,13 @@ export default function First() {
    if(nextBtnRef.current){nextBtnRef.current.addEventListener('click',changeViewToOne)}
    if(preBtnRef.current) {preBtnRef.current.addEventListener('click',changeViewToOne)}
     if(pagBtnRef.current){pagBtnRef.current.forEach((element)=>{
-   element.addEventListener('click',changeViewToOne)
+      if(element)
+  { element.addEventListener('click',changeViewToOne)}
     })}
 
 
    if(optionRef.current) {optionRef.current.forEach((element)=>{
-    element.addEventListener('click',changeViewToOne)
+   if(element) {element.addEventListener('click',changeViewToOne)}
     })}
   
     return () => {
@@ -178,7 +182,7 @@ export default function First() {
        {uniqueSings.slice(start,end).map((item,index)=>{ 
       return(
         <>
-      <MainBox artist={item.artist} sing={item.sing}   type={item.type} singerType={item.singerType} src={item.src}/>
+      <MainBox artist={item.artist} sing={item.sing}   type={item.type} singerType={item.singerType} src={item.src} track={item.track} album={item.album}/>
       </>
       )
       

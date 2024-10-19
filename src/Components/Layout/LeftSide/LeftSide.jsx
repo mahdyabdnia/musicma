@@ -4,6 +4,7 @@ import { Divider } from '@mui/material'
 import classnames from 'classnames'
 import sings from '../../Consts/sings'
 import madahi from '../../Consts/madah'
+import albums from '../../Consts/albums'
 import { useNavigate } from 'react-router-dom'
 export default function LeftSide() {
     const classes=useStyles()
@@ -25,8 +26,21 @@ export default function LeftSide() {
     }
 
     const finalSings=combineArray(sings,madahi);
+    const uniqueKeys = new Set();
 
-
+    const uniqueSings = albums.filter((item) => {
+      
+        const artistAlbumKey = `${item.album}`;
+    
+        // بررسی اینکه آیا کلید آهنگ یا کلید آلبوم قبلاً اضافه شده است
+        if ( !uniqueKeys.has(artistAlbumKey)) {
+          
+            uniqueKeys.add(artistAlbumKey); // اضافه کردن کلید آلبوم
+            return true; // این آهنگ را نگه‌دار
+        }
+    
+        return false; // این آهنگ را نادیده بگیر 
+      });
   return (
     <aside className={classes.aside}>
 
@@ -70,12 +84,12 @@ export default function LeftSide() {
         </div>
 
       <ul className={classes.music_list}>
-       {finalSings.slice(1,6).map((item)=>{
+       {uniqueSings.slice(1,6).map((item)=>{
           return(
             <li className={classnames(classes.music_list_item,classes.music_item_album)}   onClick={()=>{navigate(`/sing/${item.artist}/${item.sing}`)}}>
                   <span> دانلود </span> &nbsp;
-                  {item.type}&nbsp;
-             {item.sing}
+                  آلبوم &nbsp;
+             {item.album}
       </li>
           )
         })} 

@@ -3,6 +3,7 @@ import useStyles from './styles'
 import { useLocation, useParams } from 'react-router-dom'
 import sings from '../Consts/sings'
 import madahi from '../Consts/madah'
+import albums from '../Consts/albums'
 
 import Box from './Box/Box'
 import MainBox from '../MainBox/MainBox'
@@ -17,9 +18,11 @@ export default function Archive() {
   const singAdd=madahi.map((sing)=>({
     ...sing,
     id:lastId+1+sing.id,
+album:'',
     type:'مداحی',
     singerType:'مداح',
-    src:'/images/madah.png'
+    src:'/images/madah.png',
+    track:'yes'
 
   }))
 
@@ -42,7 +45,10 @@ export default function Archive() {
 
 
 
-  const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:'خواننده',src:'/images/singer.png'})),...singAdd];
+  const newSing=[...sings.map((sing)=>({...sing,album:'',type:'ترانه',track:'yes',singerType:'خواننده عزیز',src:'/images/singer.png'})),...singAdd,
+  ...albums.map((al)=>({...al,type:'ترانه',src:'/images/singer.png',track:'yes',singerType:'خواننده عزیز'}))
+
+  ];
   const filteredSing=newSing.filter((sing)=>{
     const artistMatch=sing.artist.toLowerCase().includes(name.toLowerCase());
       return artistMatch;
@@ -58,7 +64,7 @@ export default function Archive() {
         {filteredSing.map((item)=>{
           return(
             <>
-            <MainBox artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType}  src={item.src} />
+            <MainBox artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType}  src={item.src} album={item.album} track={item.track} />
       
             
             </>

@@ -5,6 +5,7 @@ import { Down, LeftArrow, RightArrow } from '../Icons/Icons';
 import Box from './Box/Box';
 import sings from '../Consts/sings'
 import madahi from '../Consts/madah';
+import albums from '../Consts/albums';
 import { MoreHoriz, Spa } from '@mui/icons-material';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import MainBox from '../MainBox/MainBox';
@@ -24,29 +25,49 @@ export default function SearchPage() {
   const singAdd=madahi.map((sing,index)=>({
     ...sing,
     id:lastId+index+1,
+    album:'',
     type:'مداحی',
+    track:'yes',
     singerType:'مداح اسلام',
-    src:'/images/madah.png'
+    src:'/images/madah.png',
+   
   }))
-  const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:'خواننده عزیز',src:'/images/singer.png'})),...singAdd]
+  const newSing=[...sings.map((sing)=>({...sing,album:'',track:'yes',type:'ترانه',singerType:'خواننده عزیز',src:'/images/singer.png'})),...singAdd,
+    ...albums.map((al)=>({...al,type:'ترانه',track:'no',singerType:'خواننده عزیز',src:'/images/singer.png'}))
+  ]
   const filteredSings=newSing.filter((sing)=>{
     const artistMatch=sing.artist.toLowerCase().includes(text.toLowerCase());
     const singMatch=sing.sing.toLowerCase().includes(text.toLowerCase());
+    const albumMatch=sing.album.toLowerCase().includes(text.toLowerCase())
     if (filterType === 'all') {
-      return artistMatch || singMatch;
+      return artistMatch || singMatch||albumMatch;
   } else if (filterType === 'artist') {
       return artistMatch;
   } else if (filterType === 'sing') { 
       return singMatch;
   }
+  else if(filterType==='album'){
+     return albumMatch;
+  }
   return false;
 
   }) 
 
-  const uniqueSings = Array.from(new Set(filteredSings.map(item => `${item.artist}-${item.sing}`)))
-        .map(uniqueKey => {
-            return filteredSings.find(item => `${item.artist}-${item.sing}` === uniqueKey);
-        });
+  const uniqueKeys = new Set();
+
+const uniqueSings = filteredSings.filter((item) => {
+    const artistSingKey = `${item.artist}-${item.sing}`;
+    const artistAlbumKey = `${item.artist}-${item.album}`;
+
+    // بررسی اینکه آیا کلید آهنگ یا کلید آلبوم قبلاً اضافه شده است
+    if (!uniqueKeys.has(artistSingKey) && !uniqueKeys.has(artistAlbumKey)) {
+        uniqueKeys.add(artistSingKey); // اضافه کردن کلید آهنگ
+        uniqueKeys.add(artistAlbumKey); // اضافه کردن کلید آلبوم
+        return true; // این آهنگ را نگه‌دار
+    }
+
+    return false; // این آهنگ را نادیده بگیر
+});
     const classes=useStyles()
   
    
@@ -227,6 +248,7 @@ export default function SearchPage() {
                     <ul className={classes.option_list}>
                         <li className={classes.option_list_item} ref={(el)=>(optionRef.current[0]=el)} onClick={()=>{setFilterType('artist')}}>نام خواننده</li>
                         <li className={classes.option_list_item} ref={(el)=>(optionRef.current[1]=el) } onClick={()=>{setFilterType('sing')}}>نام آهنگ</li>
+                        <li className={classes.option_list_item} ref={(el)=>(optionRef.current[2]=el) } onClick={()=>{setFilterType('album')}}>نام آلبوم</li>
                         
                     </ul>
                 </div>
@@ -255,7 +277,7 @@ export default function SearchPage() {
          {uniqueSings.slice(start,end).map((item)=>{
           return(
             <>
-            <MainBox artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType} src={item.src}/>
+            <MainBox artist={item.artist} sing={item.sing} type={item.type} singerType={item.singerType} src={item.src} album={item.album} track={item.track}/>
             </>
           )
          })}
@@ -265,7 +287,7 @@ export default function SearchPage() {
           {renderingPagging()}
         
          </div>
-         {endPage}/{startPage}/{currentPage}/{totalPage}/{start}/{end}
+   
          </> }
       
     </div>

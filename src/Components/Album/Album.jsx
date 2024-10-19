@@ -6,14 +6,24 @@ import MiniMusicPlayer from '../MiniMusicPlayer/MusicPlayer';
 import Modal from '../Modal/Modal';
 import { User } from '../Consts/Icons';
 import { Email } from '@mui/icons-material';
+ import { useParams ,useNavigate} from 'react-router-dom';
+import albums from '../Consts/albums';
  
-
 export default function Album() {
     const classes=useStyles();
     const menuRef=useRef([]);
+    const {singername}=useParams();
+    const {albumname}=useParams()
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [text,setText]=useState('');
+    const navigate=useNavigate()
+    const getMusicFile = (index) => {
+      if (index % 4 === 0) return 'aboozar.mp3';
+      if (index % 4 === 1) return 'nariman.mp3';
+      if (index % 4 === 2) return 'rafighShahid.mp3';
+      if (index % 4 === 3) return 'salamFarmandeh.mp3';
+    };
    const [comment, setComment] = useState([ ])
    const handleClick=(e)=>{
 e.preventDefault();
@@ -36,7 +46,8 @@ setName('')
       return () => {
         if(menuRef.current){
             for(var i=0;i<menuRef.current.length;i++){
-                menuRef.current[i].removeEventListener('click',openModal)
+                if(menuRef.current[i])
+                {menuRef.current[i].removeEventListener('click',openModal)}
             }
         }
       }
@@ -46,6 +57,13 @@ setName('')
         document.getElementsByClassName('modal')[0].style.display="flex"
         
     }
+
+    const filteredSings=albums.filter((al)=>{
+      const artist=al.artist.toLowerCase().includes(singername.toLowerCase());
+      const album=al.album.toLowerCase().includes(albumname.toLowerCase());
+
+      return artist && album;
+    })
   return (
     <div className={classes.root}>
       <div className={classes.main}>
@@ -57,7 +75,7 @@ setName('')
 
         <div className={classes.body}>
             <div className={classes.info_box}>
-                <h1 className={classes.info_title}>دانلود آلبوم جدید  ... ........</h1>
+                <h1 className={classes.info_title}>دانلود آلبوم    {albumname} از خواننده عزیز  {singername}</h1>
                 <h2 className={classes.info_sec_title}>ّهم اکنون از رسانه موزیک ما</h2>
             </div>
 
@@ -71,35 +89,20 @@ setName('')
                 <div>───┤ ♩♬♫♪♭ ├───</div>
                       <div className={classes.music_box_body}>
                          <ul className={classes.music_list}>
-                            <li className={classes.music_list_item}>
-                              <span className={classes.music_name}>  آهنگ ... </span>
-                              <MiniMusicPlayer src={`${process.env.PUBLIC_URL}/media/aboozar.mp3`}/>
-                              <span className={classes.music_dl}   ref={(el)=>(menuRef.current[0]=el)}>دانلود </span>
-                              <Modal src={`${process.env.PUBLIC_URL}/media/aboozar.mp3`} className='modal'/>
+                          {filteredSings.map((item,index)=>{
+                            return(
+                              <li className={classes.music_list_item}>
+                              <span className={classes.music_name}>  آهنگ {item.sing} </span>
+                              <MiniMusicPlayer src={`${process.env.PUBLIC_URL}/media/${getMusicFile(index)}`}/>
+                              <span className={classes.music_dl}   ref={(el)=>(menuRef.current[index]=el)}>دانلود </span>
+                              <Modal src={`${process.env.PUBLIC_URL}/media/${getMusicFile(index)}`} className='modal'/>
                              
-                              <span className={classes.music_page_link}>صفحه موزیک</span>
+                              <span className={classes.music_page_link} onClick={()=>{navigate(`/sing/${item.artist}/${item.sing}`)}}>صفحه موزیک</span>
                               <span className={classes.music_divider}></span>
                             </li>
-                            <li className={classes.music_list_item}>
-                              <span className={classes.music_name}>  آهنگ ... </span>
-                              <MiniMusicPlayer src={`${process.env.PUBLIC_URL}/media/rafighShahid.mp3`}/>
-                              <span className={classes.music_dl} ref={(el)=>(menuRef.current[1]=el)}>دانلود </span>
-                              <Modal src={`${process.env.PUBLIC_URL}/media/rafighShahid.mp3`} className='modal'/>
+                            )
+                          })}
                             
-                              
-                              <span className={classes.music_page_link}>صفحه موزیک</span>
-                              <span className={classes.music_divider}></span>
-                            </li>
-
-                            <li className={classes.music_list_item}>
-                              <span className={classes.music_name}>  آهنگ ... </span>
-                              <MiniMusicPlayer src={`${process.env.PUBLIC_URL}/media/salamFarmandeh.mp3`}/>
-                              <span className={classes.music_dl} ref={(el)=>(menuRef.current[2]=el)}>دانلود </span>
-                              <Modal src={`${process.env.PUBLIC_URL}/media/salamFarmandeh.mp3`} className='modal'/>
-                              
-                              <span className={classes.music_page_link}>صفحه موزیک</span>
-                              <span className={classes.music_divider}></span>
-                            </li>
                          </ul>
                       </div>
 
