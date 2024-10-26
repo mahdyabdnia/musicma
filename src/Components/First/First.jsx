@@ -17,10 +17,19 @@ export default function First() {
    const newSing=[...sings.map((sing)=>({...sing,type:'ترانه',singerType:' خواننده عزیز',src:'/images/singer.png',album:'',track:'yes'  })),...singAdd,
     ...albums.map((al)=>({...al,type:'ترانه',track:'yes',singerType:'خواننده عزیز',src:'/images/singer.png'}))
    ]
-   const uniqueSings = Array.from(new Set(newSing.map(item => `${item.artist}-${item.sing}`)))
+   const uniqueSing  = Array.from(new Set(newSing.map(item => `${item.artist}-${item.sing}`)))
         .map(uniqueKey => {
             return newSing.find(item => `${item.artist}-${item.sing}` === uniqueKey);
         });
+  const uniqueKeys=new Set();
+  const uniqueSings=newSing.filter((item)=>{
+     const aritstSingKey=`${item.artist}-${item.sing}`
+     if(!uniqueKeys.has(aritstSingKey)){
+      uniqueKeys.add(aritstSingKey)
+      return true;
+     }
+     return false;
+  });
         
 
   const showMenuRef = useRef(null)

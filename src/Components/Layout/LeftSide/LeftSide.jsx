@@ -86,7 +86,7 @@ export default function LeftSide() {
       <ul className={classes.music_list}>
        {uniqueSings.slice(1,6).map((item)=>{
           return(
-            <li className={classnames(classes.music_list_item,classes.music_item_album)}   onClick={()=>{navigate(`/sing/${item.artist}/${item.sing}`)}}>
+            <li className={classnames(classes.music_list_item,classes.music_item_album)}   onClick={()=>{navigate(`/album/${item.artist}/${item.album}`)}}>
                   <span> دانلود </span> &nbsp;
                   آلبوم &nbsp;
              {item.album}

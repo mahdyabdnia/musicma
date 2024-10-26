@@ -2,21 +2,26 @@ import React, { useRef,useEffect,useState } from 'react'
 import useStyles from './styles'
  
  
-import MiniMusicPlayer from '../MiniMusicPlayer/MusicPlayer';
+import MiniMusicPlayer from '../MiniMusicPlayer/MusicPlayer'; 
 import Modal from '../Modal/Modal';
 import { User } from '../Consts/Icons';
-import { Email } from '@mui/icons-material';
+import { Email,Person } from '@mui/icons-material';
+
  import { useParams ,useNavigate} from 'react-router-dom';
-import albums from '../Consts/albums';
+import albums from '../Consts/albums'; 
  
 export default function Album() {
     const classes=useStyles();
     const menuRef=useRef([]);
     const {singername}=useParams();
     const {albumname}=useParams()
-    const [name,setName]=useState('')
+    const [username, setName] = useState('')
     const [email,setEmail]=useState('')
-    const [text,setText]=useState('');
+    const btnRef = useRef(null)
+    const inputRef=useRef([])
+    const [textArea,setText]=useState('')
+    const [comments, setComment] = useState([ ])
+   
     const navigate=useNavigate()
     const getMusicFile = (index) => {
       if (index % 4 === 0) return 'aboozar.mp3';
@@ -24,10 +29,10 @@ export default function Album() {
       if (index % 4 === 2) return 'rafighShahid.mp3';
       if (index % 4 === 3) return 'salamFarmandeh.mp3';
     };
-   const [comment, setComment] = useState([ ])
+   
    const handleClick=(e)=>{
 e.preventDefault();
-setComment([...comment,{name:name,email:email,text:text}])
+setComment([...comments,{name:username,email:email,text:textArea}])
 setText('')
 setEmail('')
 setName('')
@@ -58,7 +63,9 @@ setName('')
         
     }
 
-    const filteredSings=albums.filter((al)=>{
+    const newAlbum=albums.map((al)=>({...al,type:'ترانه',singerType:'خواننده',src:'images/singer.png'}))
+
+    const filteredSings=newAlbum.filter((al)=>{
       const artist=al.artist.toLowerCase().includes(singername.toLowerCase());
       const album=al.album.toLowerCase().includes(albumname.toLowerCase());
 
@@ -68,7 +75,7 @@ setName('')
     <div className={classes.root}>
       <div className={classes.main}>
         <div className={classes.header_info}>
-            <div className={classes.info_one}>1</div>
+            <div className={classes.info_one}>دانلود آلبوم {albumname}</div>
             <div className={classes.info_two}>2</div>
             <div className={classes.info_the}>3</div>
         </div>
@@ -92,12 +99,12 @@ setName('')
                           {filteredSings.map((item,index)=>{
                             return(
                               <li className={classes.music_list_item}>
-                              <span className={classes.music_name}>  آهنگ {item.sing} </span>
+                              <span className={classes.music_name}>  آهنگ {item.sing} از آلبوم {item.album} اثر {item.artist}</span>
                               <MiniMusicPlayer src={`${process.env.PUBLIC_URL}/media/${getMusicFile(index)}`}/>
-                              <span className={classes.music_dl}   ref={(el)=>(menuRef.current[index]=el)}>دانلود </span>
+                              <span className={classes.music_dl}   ref={(el)=>(menuRef.current[index]=el)}>دانلود {item.type} {item.sing}</span>
                               <Modal src={`${process.env.PUBLIC_URL}/media/${getMusicFile(index)}`} className='modal'/>
                              
-                              <span className={classes.music_page_link} onClick={()=>{navigate(`/sing/${item.artist}/${item.sing}`)}}>صفحه موزیک</span>
+                              <span className={classes.music_page_link} onClick={()=>{navigate(`/sing/${item.artist}/${item.sing}`)}}>صفحه {item.type} </span>
                               <span className={classes.music_divider}></span>
                             </li>
                             )
@@ -116,49 +123,53 @@ setName('')
 
       
       <div className={classes.comment_box}>
-        <div className={classes.comment_box_body}>
+         <div className={classes.send_comment_box}>
             <div className={classes.comment_header}>
-                <div className={classes.hr}></div> 
-                <div className={classes.head}>کامنت خود را وارد کنید</div>
-                <div className={classes.hr}></div>
+               <hr className={classes.hr}/>
+               <h6>کامنت خود را وارد کنید </h6>
+               <hr className={classes.hr} />
+            </div>
+            <div className={classes.sender_info_box}>
+               <div className={classes.info_input_box}>
+                  <span className={classes.info_icon}>
+                     <Person/>
+                  </span>
+                  <input type="text" className={classes.info_input} placeholder='نام ' ref={(el)=>(inputRef.current[0]=el)} value={username} onChange={(e)=>{setName(e.target.value)}}/>
+               </div>
+
+               <div className={classes.info_input_box}>
+                  <span className={classes.info_icon}>
+                     <Email/>
+                  </span>
+                  <input type="email" className={classes.info_input} placeholder='ایمیل' ref={(el)=>(inputRef.current[1]=el)} value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+               </div>
             </div>
 
-            <div className={classes.comment_main_box}>
-               <div className={classes.user_email_box}>
-                <div className={classes.user_input_box}>
-                  <span><User/></span>
-                  <input type="text" className={classes.user_input} value={name} onChange={(event)=>{setName(event.target.value)}} placeholder='نام کاربری'/>
-                </div>
+            <div className={classes.comment_text_box}>
+               <textarea name="" id="" className={classes.comment_text} value={textArea} onChange={(e)=>{setText(e.target.value)}} placeholder='لطفا نظر خود را وارد کنید'></textarea>
+               <button className={classes.comment_send_btn} onClick={handleClick} ref={btnRef}>ارسال نظر</button>
+            </div>
+         </div>
 
-                <div className={classes.email_input_box}>
-                  <span><Email/></span>
-                  <input type="email" className={classes.email_input} placeholder='ایمیل' value={email} onChange={(event)=>{setEmail(event.target.value)}}/>
-                </div>
-               </div>
-               <div className={classes.text_send_box}>
-                <textarea name="" id="" className={classes.comment_text} onChange={(event)=>{setText(event.target.value)}} placeholder='لطفا نظر خود را وارد کنید'></textarea>
-                <button className={classes.set_comment} onClick={handleClick}>ثبت نظر</button>
-               </div>
+          
+         <div className={classes.comments_show_box}>
+            <ul className={classes.comments_list}>
+             
 
-
-               <div className={classes.comments_block_box}>
-                {comment.map((item)=>{
+               {comments.map((item)=>{
                   return(
-                    <div className={classes.comment_block}>
-                    <span><User/></span>
-                    <span>{item.name}</span>
-                    <span className={classes.ver_divider}> </span>
-                    <span className={classes.sd_comment}>{item.text}</span>
-                     
-                  </div>
+                     <li className={classes.comment_list_item}>
+                     <span className={classes.sender_name}>  <Person/>   {item.name}</span>
+                     <hr className={classes.col}/>
+                     <span className={classes.comment}> {item.comment}</span>
+                  </li>
                   )
-                })}
-                
-               </div>
-            </div>
+               })}
+            </ul>
+         </div>
 
-        </div>
-      </div>
+
+       </div>
 
 
     </div>

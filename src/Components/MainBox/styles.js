@@ -8,7 +8,7 @@ root:{
     boxSizing:'border-box',
     border:'1px solid rgba(0,0,0,0.3)',
     borderRadius:'5px ',
-    boxShadow:'0px 0px 1px 1px rgba(0,0,0,0.3)',
+    boxShadow:'0px 0px 4px 2px rgba(0,0,0,0.6)', 
     color:'black',
     width:'100%',
     whiteSpace:'break-spaces',
@@ -19,7 +19,7 @@ root:{
     minHeight:'100px',
     transition:'0.1s box-shadow',
     '&:hover':{
-        boxShadow:'0px 0px 1px 2px rgba(0,0,0,0.4)'
+        boxShadow:'0px 0px 7px 4px rgba(0,0,0,0.7)'
     }
 
 
@@ -35,6 +35,11 @@ head_info_box:{
     minHeight:'max-content',
     whiteSpace:'break-spaces',
     textAlign:'center',
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            flexDirection:'column'
+        }
+    }
 
 },
 col:{
@@ -154,8 +159,13 @@ info_header:{
     textAlign:'center',
     fontSize:'20px !important',
     color:'white',
-    
+    cursor:'pointer',
     boxSizing:'border-box',
+    '&:hover':{
+        textShadow:'0px 0px 2px rgba(0,0,0,0.6)',
+        color:'rgba(0,0,0)'
+    }
+    
    
      
     
@@ -172,7 +182,13 @@ tools_box:{
     width:'100%',
     padding:'1vh 1vmax',
     justifySelf:'center',
-    alignSelf:'center'
+    alignSelf:'center',
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            flexDirection:'column',
+            rowGap:'20px'
+        }
+    }
 },
 sing_img_box:{
     display:'flex',
@@ -192,14 +208,19 @@ img_box:{
     boxSizing:'border-box',
     cursor:'pointer',
     borderRadius:'5px',
-    boxShadow:'0px 0px 1px 2px rgba(0,0,0,0.5)',
+    boxShadow:'0px 0px 4px 2px rgba(0,0,0,0.5)',
     width:'150px',
     aspectRatio:'1/1',
     '&:hover':{
-    boxShadow:'0px 0px 1px 3px rgba(0,0,0,0.4)'
+    boxShadow:'0px 0px 7px 3px rgba(0,0,0,0.4)' 
     },
     '& img':{
         objectFit: 'contain'
+    },
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            width:'200px'
+        }
     }
 },
 
@@ -211,7 +232,13 @@ tool_btn_box:{
     rowGap:'10px',
     boxSizing:'border-box',
     padding:'1vh 1vmax',
-    width:'50%'
+    width:'50%',
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            width:'100%',
+            
+        }
+    }
 },
 btn:{
     display:'flex',
@@ -229,7 +256,17 @@ btn:{
      
     whiteSpace:'break-spaces',
     width:'min-content',
-    minWidth:'20vmax'
+     boxShadow:'0px 0px 3px 1px rgba(0,0,0,0.7)',
+    minWidth:'20vmax',
+    '&:hover':{
+        boxShadow:'0px 0px 7px 3px rgba(0,0,0,0.7)',
+        color:'rgba(244,232,234)'
+    },
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            width:'100% !important'
+        }
+    }
     
 
 
@@ -238,7 +275,7 @@ btn:{
 arch_btn:{
 backgroundColor:darkPink,
 '&:hover':{
-    backgroundColor:darkRedT
+    backgroundColor:'#b0435e'
 }
 },
 dl_btn:{

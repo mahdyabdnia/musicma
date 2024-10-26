@@ -7,7 +7,7 @@ import classnames from 'classnames'
 
 export default function MiniMusicPlayer({className,src}) {
     const [progress, setProgress] = useState(0);
-    const [progressVlm, setProgressVlm] = useState(50);
+    const [progressVlm, setProgressVlm] = useState(50); 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume,setVolume]=useState(0.5);
@@ -181,11 +181,11 @@ export default function MiniMusicPlayer({className,src}) {
       </div>
 
       <div className={classes.time_box}>
-        <span>{currentTime ? formatTime(currentTime) : ' 0:00'}
+        <span className={classes.time_box_segone}>{currentTime ? formatTime(currentTime) : ' 0:00'}
 
         </span>
-        <span>/</span>
-        <span>{duration ? formatTime(duration) : '0:00'}</span>
+        <span className={classes.time_box_segtwo}>/</span>
+        <span className={classes.time_box_segthree}>{duration ? formatTime(duration) : '0:00'}</span>
       </div>
 
      </div>

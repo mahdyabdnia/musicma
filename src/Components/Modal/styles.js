@@ -34,12 +34,18 @@ modal_content:{
     },
     '@media(max-width:1224px)':{
         height:'15vmax'
+    },
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            width:'95%',
+            height:'30vmax'
+        }
     }
 
 },
 close_btn:{
     display:'flex',
-    flexDirection:'row',
+    flexDirection:'row', 
     alignItems:'center',
     justifyContent:'space-between',
     border:'none',
@@ -57,7 +63,9 @@ head:{
     direction:'rtl',
     boxSizing:'border-box',
     padding:'10px',
-    fontSize:'20px'
+    fontSize:'20px',
+    color:'black',
+    textAlign:'center'
 },
 button_box:{
     display:'flex',
@@ -71,6 +79,12 @@ button_box:{
     },
     '@media(max-width:1224px)':{
         flexDirection:'row'
+    },
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+           display:'flex',
+           flexDirection:'column'
+        }
     }
 },
 btn:{

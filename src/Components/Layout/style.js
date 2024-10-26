@@ -17,6 +17,11 @@ main:{
         width:'100vw',
         padding:'1vh 10px',
         boxSizing:'border-box'
+    },
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            rowGap:'20px'
+        }
     }
 }
 })

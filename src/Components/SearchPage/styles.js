@@ -22,7 +22,7 @@ const useStyles=makeStyles({
     width:'100%',
     padding:'2vh 1vmax',
     fontSize:'20px',
-    textShadow:'0px 0px 4px rgba(0,0,0,0.7)',
+    textShadow:'0px 0px 4px rgba(0,0,0,0.7)', 
     fontWeight:'bolder'
  },
  filter_box:{
@@ -30,13 +30,20 @@ const useStyles=makeStyles({
     flexDirection:'row',
     alignItems:'center',
     border:'1px solid rgba(0,0,0,0.5)',
-    padding:'1vh 1vw',
+    padding:'1vh 1vmax',
     borderRadius:'5px',
 background:'rgb(141,228,234)',
 background:'linear-gradient(98deg, rgba(141,228,234,1) 1%, rgba(124,180,238,1) 40%, rgba(126,180,238,1) 100%)',
 justifyContent:'space-between',
 width:'100%',
-boxSizing:'border-box'
+boxSizing:'border-box',
+'@media(min-width:320px)':{
+  '@media(max-width:720px)':{
+    display:'flex',
+    flexDirection:'column',
+    padding:'1vh 2vmax !important'
+  }
+}
     
  },
  filter:{
@@ -55,6 +62,11 @@ boxSizing:'border-box'
         display:'flex',
         flexDirection:'row',
         alignItems:'center'
+    },
+    '@media(min-width:320px)':{
+      '@media(max-width:720px)':{
+        width:'100%'
+      }
     }
 
  },
@@ -113,17 +125,37 @@ boxSizing:'border-box'
    cursor:'pointer',
    fontWeight:'bolder',
    color:'white',
-   background:'#5a8f87'
+   background:'#5a8f87',
+   '@media(min-width:320px)':{
+    '@media(max-width:720px)':{
+      width:'100%'
+    }
+   }
  },
  show_filter:{
   display:'flex',
   flexDirection:'row',
   alignItems:'center',
   columnGap:'10px',
-  padding:'1vh 1vw',
+  padding:'1vh 1vmax',
   boxSizing:'border-box',
+  '@media(min-width:320px)':{
+    '@media(max-width:720px)':{
+      width:'100%',
+      padding:'1vh 0px',
+      display:'grid',
+      gridTemplateColumns:'auto auto'
+    }
+  }
    
    
+ },
+ filter_menu_btn:{
+display:'flex',
+flexDirection:'row',
+justifyContent:'space-between',
+alignItems:'center',
+width:'100%'
  },
  pag_box:{
    display:'flex',

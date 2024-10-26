@@ -74,7 +74,7 @@ header_up_type:{
 },
 body:{
     display:'flex',
-    flexDirection:'column',
+    flexDirection:'column', 
     alignItems:'center',
     justifyContent:'flex-start',
     rowGap:'20px',
@@ -143,7 +143,7 @@ img_block:{
      justifySelf:'center',
      transition:'0.1s box-shadow',
      '&:hover':{
-     boxShadow:'0px 0px 1px 1px rgba(0,0,0,0.5)'
+     boxShadow:'0px 0px 7px 1px rgba(0,0,0,0.5)'
      }
 },
 img:{
@@ -173,17 +173,37 @@ btn:{
     width:'30vmax',
     minHeight:'max-content',
     backgroundColor:'green',
-    padding:'1.5vh 5vmax',
+    padding:'1.5vh 5vmax', 
     columnGap:'1vmax',
     boxSizing:'border-box',
     justifyContent:'center',
     '&:hover':{
-        boxShadow:'0px 0px 1px 1px rgba(0,0,0,0.5)'
+        boxShadow:'0px 0px 7px 1px rgba(0,0,0,0.5)'
     }
     
 
 
 },
+arch_btn:{
+backgroundColor:'#0f8a8a',
+'&:hover':{
+    backgroundColor:'#31b0b0'
+}
+},
+dl_btn:{
+backgroundColor:'#8a0f32',
+'&:hover':{
+    backgroundColor:'#eb4034',
+}
+},
+pl_btn:{
+backgroundColor:'#0f6d8a',
+'&:hover':{
+   
+    backgroundColor:'#1483a6'
+}
+},
+
 sing_text_box:{
     display:'flex',
     flexDirection:'column',
@@ -274,6 +294,12 @@ sug_list:{
  width:'100%',
  boxSizing:'border-box',
  listStyleType:'none',
+ '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            gridTemplateColumns:'1fr',
+            fontSize:'14px'
+        }
+    }
  
 },
 sug_list_item:{
@@ -391,6 +417,12 @@ sender_info_box:{
     boxSizing:'border-box',
     color:'black',
     padding:'1vh 1vmax',
+    '@media(min-width:320px)':{
+        '@media(max-width:620px)':{
+            gridTemplateColumns:'1fr',
+            rowGap:'10px'
+        }
+    }
 
 },
 info_input_box:{
@@ -400,13 +432,14 @@ alignItems:'center',
 justifyContent:'flex-start',
 columnGap:'10px',
 borderRadius:'5px',
-border:'1px solid rbga(0,0,0,0.5)',
-boxShadow:'0px 0px 1px 1px rgba(0,0,0,0.5)',
+ 
+ 
 width:'100%',
 height:'50px',
 padding:'1vh 1vmax',
 backgroundColor:'whtie',
-boxSizing:'border-box'
+boxSizing:'border-box',
+border:'1px solid rgba(0,0,0,0.4)'
 
 },
 info_icon:{
@@ -448,14 +481,14 @@ padding:'1vh 1vmax'
 },
 comment_text:{
     resize:'none',
-    cursor:'pointer',
+   
     display:'flex',
     flexDirection:'row',
     alignItems:'center',
     textAlign:'justify',
     border:'1px solid rgba(0,0,0,0.5)',
     boxSizing:'border-box',
-    boxShadow:'0px 0px 1px 1px rgba(0,0,0,0.5)',
+    
     width:'100%',
     padding:'1vh 1vmax',
     fontSize:'18px',

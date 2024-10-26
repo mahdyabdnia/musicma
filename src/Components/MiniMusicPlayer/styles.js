@@ -41,7 +41,17 @@ const useStyles=makeStyles({
  time_box:{
     display:'flex',
     flexDirection:'row',
-    columnGap:'20px'
+    columnGap:'20px',
+    '@media(min-width:320px)':{
+      '@media(max-width:720px)':{
+         '& span':{
+            display:'none',
+            '&:first-child':{
+               display:'flex !important'
+            }
+         }
+      }
+    }
  },
  close_btn:{
     color:'rgba(0,0,0,0.7)',

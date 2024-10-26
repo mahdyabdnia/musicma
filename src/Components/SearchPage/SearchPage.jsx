@@ -148,7 +148,7 @@ const uniqueSings = filteredSings.filter((item) => {
       }
       if(optionRef.current){
       optionRef.current.forEach((element)=>{
-      if(element) {element.addEventListener('click',setOption)}
+      if(element) {element.addEventListener('click',setOption)} 
       }) }
     
       return () => {
@@ -241,7 +241,7 @@ const uniqueSings = filteredSings.filter((item) => {
         </div>
         <div className={classes.filter_box}>
             <div className={classes.filter}>
-              <span ref={selectRef}>
+              <span ref={selectRef} className={classes.filter_menu_btn}>
               <span> فیلتر براساس : {optionText}</span>
               <span><Down/></span></span>  
                 <div className={classes.filters_box}>

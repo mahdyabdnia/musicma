@@ -15,7 +15,7 @@ export default function Modal({className,src}) {
 
   
     const handleDownloadLink=()=>{
-        const link = document.createElement('a');
+        const link = document.createElement('a'); 
     link.href = src; // Replace with your file pathconst fileName = );
     link.download = getFileName(src); // Replace with your desired file name
     document.body.appendChild(link);

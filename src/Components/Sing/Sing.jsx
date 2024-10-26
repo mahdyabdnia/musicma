@@ -19,6 +19,7 @@ export default function Sing() {
     const [textArea,setText]=useState('')
     const {singname}=useParams()
     const [view,setView]=useState(0);
+    const inputRef = useRef([])
     const navigate=useNavigate();
     const handleClick=(e)=>{
       e.preventDefault();
@@ -28,6 +29,55 @@ export default function Sing() {
      setText('')
 
     }
+
+    useEffect(() => {
+      const focusFunc=(event)=>{
+         const parent=event.currentTarget.parentElement; 
+         parent.style.border="2px solid black"
+         console.log("fgfgfgf")
+      }
+
+     const focusT=(event)=>{
+         const parent=event.currentTarget.parentElement;
+         parent.style.border="1px solid rgba(0,0,0,0.5)"
+         console.log("fgfgfgf")
+      }
+        if(inputRef.current){
+         inputRef.current.forEach((element)=>{
+          if(element){
+            element.addEventListener('focus',focusFunc)
+          }
+         })
+        }
+        if(inputRef.current){
+         inputRef.current.forEach((element)=>{
+          if(element){
+            element.addEventListener('blur',focusT)
+          }
+         })
+        }
+       
+    
+      return () => {
+         if(inputRef.current){
+            inputRef.current.forEach((element)=>{
+             if(element){
+               element.removeEventListener('focus',focusFunc)
+             }
+            })
+           }
+           if(inputRef.current){
+            inputRef.current.forEach((element)=>{
+             if(element){
+               element.removeEventListener('blur',focusT)
+             }
+            })
+           }
+
+          
+      }
+    }, [ ]) 
+    
 
     useEffect(() => {
       const changeViewToOne = () => {
@@ -61,7 +111,7 @@ export default function Sing() {
 
       combineSings.forEach((sing) => {
           const artistMatch = sing.artist.toLowerCase().includes(name.toLowerCase());
-          const singMatch = sing.sing.toLowerCase().includes(singname.toLowerCase());
+          const singMatch = sing.sing.toLowerCase().includes(singname.toLowerCase()); 
 
           if (artistMatch && singMatch) {
               const key = `${sing.artist}-${sing.sing}`;
@@ -113,9 +163,9 @@ export default function Sing() {
 
           
                 <div className={classes.btn_box}>
-                <button  className={classes.btn} style={{backgroundColor:'#0f8a8a'}} onClick={()=>{navigate(`/archive/${item.artist}`)}}>آرشیو {item.type} های {item.artist} </button>
-                <button className={classes.btn} style={{backgroundColor:'#0f6d8a'}}><span>پخش آنلاین </span> <span> <PlayMusic/></span></button>
-                <button className={classes.btn} style={{backgroundColor:'#8a0f32'}}>
+                <button  className={classnames(classes.btn,classes.arch_btn)}   onClick={()=>{navigate(`/archive/${item.artist}`)}}>آرشیو {item.type} های {item.artist} </button>
+                <button className={classnames(classes.btn,classes.pl_btn)}  ><span> <PlayMusic/></span> <span>پخش آنلاین </span> </button>
+                <button className={classnames(classes.btn,classes.dl_btn)}  >
                 <span className='border-yellow-100 border-x-4 border-solid'>
                <Download/>
               </span>
@@ -124,11 +174,11 @@ export default function Sing() {
                    دانلود با کیفیت ۱۲۸
                   </span>
                  
-                
+                 
 
                   
                 </button>
-                <button className={classes.btn} style={{backgroundColor:'#8a0f32'}}><span ><Download/></span>دانلود با کیفیت ۳۲۰ </button>
+                <button className={classnames(classes.btn,classes.dl_btn)} ><span ><Download/></span>دانلود با کیفیت ۳۲۰ </button>
             </div>
        
 
@@ -200,19 +250,19 @@ export default function Sing() {
                   <span className={classes.info_icon}>
                      <Person/>
                   </span>
-                  <input type="text" className={classes.info_input} placeholder='نام ' value={username} onChange={(e)=>{setName(e.target.value)}}/>
+                  <input type="text" className={classes.info_input} placeholder='نام ' ref={(el)=>(inputRef.current[0]=el)} value={username} onChange={(e)=>{setName(e.target.value)}}/>
                </div>
 
                <div className={classes.info_input_box}>
                   <span className={classes.info_icon}>
                      <Email/>
                   </span>
-                  <input type="email" className={classes.info_input} placeholder='ایمیل' value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+                  <input type="email" className={classes.info_input} placeholder='ایمیل' ref={(el)=>(inputRef.current[1]=el)} value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
                </div>
             </div>
 
             <div className={classes.comment_text_box}>
-               <textarea name="" id="" className={classes.comment_text} value={textArea} onChange={(e)=>{setText(e.target.value)}}></textarea>
+               <textarea name="" id="" className={classes.comment_text} value={textArea} onChange={(e)=>{setText(e.target.value)}} placeholder='لطفا نظر خود را وارد کنید'></textarea>
                <button className={classes.comment_send_btn} onClick={handleClick} ref={btnRef}>ارسال نظر</button>
             </div>
          </div>

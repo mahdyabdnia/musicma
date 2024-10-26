@@ -38,6 +38,15 @@ const madahArray = uniqueMadah.map((artist, index) => ({
     }
     const params=useParams()
 
+    useEffect(() => {
+      setvalue('')
+    
+      return () => {
+         
+      }
+    }, [params,location])
+    
+
    
        
 
