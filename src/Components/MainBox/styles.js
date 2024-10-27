@@ -36,10 +36,11 @@ head_info_box:{
     whiteSpace:'break-spaces',
     textAlign:'center',
     '@media(min-width:320px)':{
-        '@media(max-width:620px)':{
+        '@media(max-width:720px)':{
             flexDirection:'column'
         }
-    }
+    },
+    
 
 },
 col:{
@@ -184,11 +185,21 @@ tools_box:{
     justifySelf:'center',
     alignSelf:'center',
     '@media(min-width:320px)':{
-        '@media(max-width:620px)':{
+        '@media(max-width:720px)':{
+            flexDirection:'column',
+            rowGap:'20px',
+           
+        }
+    },
+    '@media (orientation: landscape)':{
+       '@media(min-width:320px)':{
+        '@media(max-width:900px)':{
             flexDirection:'column',
             rowGap:'20px'
         }
+    },
     }
+
 },
 sing_img_box:{
     display:'flex',
@@ -197,7 +208,10 @@ sing_img_box:{
     justifyContent:'left',
   
     boxSizing:'border-box',
-    width:'50%'
+    width:'50%',
+    '@media (orientation: landscape)':{
+        
+    }
 
 },
 img_box:{
@@ -238,6 +252,14 @@ tool_btn_box:{
             width:'100%',
             
         }
+    },
+    '@media (orientation: landscape)':{
+        '@media(min-width:320px)':{
+            '@media(max-width:900px)':{
+                width:'100%',
+                
+            }
+        },
     }
 },
 btn:{
@@ -266,6 +288,9 @@ btn:{
         '@media(max-width:620px)':{
             width:'100% !important'
         }
+    },
+    '@media (orientation: landscape)':{
+        width:'50%'
     }
     
 

@@ -185,7 +185,7 @@ export default function MusicPlayer({className}) {
 
         </span>
         <span>/</span>
-        <span>{duration ? formatTime(duration) : '0:00'}</span>
+        <span>{duration ? formatTime(duration) : '0:00'}</span> 
       </div>
 
      </div>
